@@ -7,3 +7,15 @@ Round Hole Project -> division of the square peg(project management services to 
 Ever heard the saying that a blacksmith’s house has only wooden spoons? No? Well Square Peg is a classic example. The staff have been so busy supporting their customers that they haven’t had time to migrate their own critical back office systems to the cloud. The project management and billing systems are still maintained on premise. Worse yet, Round staff have no direct access. #notWinning
 
 This is something that Round plans to help Square Peg with, but that’s a long-term project. In the meantime, the best Round can do is to build a variety of SOAP, REST, and OData web services to allow external integrations.
+
+
+Standard Objects
+You work with the following standard objects:
+
+Opportunity—Deals related to Round’s professional services packages.
+
+Custom Objects
+Project—Represents a synced partial copy of the project record in Square Peg’s external project management system (PMS). It’s a child of the Opportunity object and contains just enough information for Round to work the project.
+
+External Objects
+Invoice—A read-only external object, connected in real time to the "invoices" table in the external Square Peg billing system. It’s a child of the Project object.
