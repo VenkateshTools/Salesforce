@@ -1,0 +1,38 @@
+@RestResource(urlMapping='/project/*')
+//RestResource class must be global
+global class ProjectRESTService {
+    
+    //Implement service logic here
+    @HttpPost
+    global static void postProjectData(){
+        RestRequest request = RestContext.request;
+        RestResponse response = RestContext.response;
+        
+        // Access request data
+        String requestBody = request.requestBody.toString();
+        PostProjectDataWrapper requestBodyWrapper = (PostProjectDataWrapper) JSON.deserialize(requestBody, PostProjectDataWrapper.class);
+        //Instead of wrapper class we can use
+        //Map<String, Object> requestData = (Map<String, Object>) JSON.deserializeUntyped(requestBody);
+        
+        //Instead of the map we can use a wrapper to return (before returning serialize the wrapper)
+        // Prepare the response
+        Map<String, Object> responseBody = new Map<String, Object>();
+        responseBody.put('status', 'success');
+        responseBody.put('message', 'Request processed successfully');
+        
+        // Set the response body and headers
+        response.addHeader('Content-Type', 'application/json');
+        response.responseBody = Blob.valueOf(JSON.serialize(responseBody));
+ 
+    }
+    
+    class PostProjectDataWrapper{
+        String ProjectRef;
+        String ProjectName;
+        String OpportunityId;
+        Date StartDate;
+        Date EndDate;
+        Double Amount;
+        String Status;
+    }
+}

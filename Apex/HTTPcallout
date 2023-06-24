@@ -1,0 +1,15 @@
+HTTPRequest req = new HTTPRequest();
+req.setEndPoint('callout:ProjectService');
+req.setMethod('POST');
+req.setHeader('token',serviceToken);
+req.setHeader('Content-Type', 'application/json;charset=UTF-8');
+req.setBody(jsonInput);
+
+HTTP http = new HTTP();
+HTTPResponse res = http.send(req);
+
+if(res.getStatusCode() == 201){      
+    System.debug('Success: ' + res.getStatus());
+}else{
+    System.debug('Failure: ' + res.getStatusCode() + ' ' + res.getStatus());
+}

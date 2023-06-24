@@ -1,0 +1,24 @@
+@RestResource(urlMapping='/project/*')
+//RestResource class must be global
+global class ProjectRESTService {
+    
+    //Implement service logic here
+    @HttpPost
+    global static String postProjectData(String ProjectRef, String ProjectName, String OpportunityId,
+                                         Date StartDate, Date EndDate, Double Amount, String Status)
+    {
+        
+        SavePoint sp = Database.setSavePoint();
+        try{
+            
+            //Logic
+                
+            return 'OK';
+        } 
+        catch(Exception e){
+            Database.rollback(sp);
+            return e.getMessage();
+        }
+        
+    }
+}
