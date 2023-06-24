@@ -1,0 +1,13 @@
+public class BillingCalloutServiceMock implements HttpCalloutMock{
+   //Implement http mock callout here
+    public HTTPResponse respond(HTTPRequest request){
+        HttpResponse response = new HttpResponse();
+       response.setHeader('Content-Type', 'application/json');
+       response.setStatus('OK');
+       response.setStatusCode(201);
+              
+       return response;
+    }
+}
+
+//Test.setMock(HttpCalloutMock.class, new BillingCalloutServiceMock());
